@@ -1,0 +1,39 @@
+{% extends "admin/base.html" %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'index' %}"> Home</a>
+</div>
+{% endblock %}
+
+
+      {% block branding %}
+      <h1 id="site-name">{{ site_header|default:_('Online Attendence System') }}</a></h1>
+      {% endblock %}
+
+      {% block usertools %}
+      <div id="user-tools">
+        {% block welcome-msg %}
+            <strong>WELCOME,{{user.first_name}}</strong>
+        {% endblock %}
+        {% block userlinks %}
+         <a href="{% url 'register' %}">Register new course</a>/<a href="{% url 'logout_view' %}">Log out</a>
+        {% endblock %}
+      </div>
+      {% endblock %}
+
+{% block sidebar %}
+    <form action="{% url 'register_course' %}" method="post">
+      {% csrf_token %}
+      <h1>Course Code  : <input type="text" name="code" required></h1><br>
+      <h1>Course Title  : <input type="text" name="name" required></h1> <br>
+      <input type="submit" value="Register">
+    </form>
+    {% if message %}
+     <div>
+       <h3>{{message}}</h3><br>
+     </div>
+
+     {%endif%}
+
+    {% endblock %}

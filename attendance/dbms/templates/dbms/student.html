@@ -1,0 +1,75 @@
+{% extends "admin/base.html" %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'index' %}"> Home</a>
+</div>
+{% endblock %}
+
+
+      {% block branding %}
+      <h1 id="site-name">{{ site_header|default:_('Online Attendence System') }}</h1>
+      {% endblock %}
+
+      {% block usertools %}
+      <div id="user-tools">
+
+
+        {% block welcome-msg %}
+            <strong>WELCOME,{{user.first_name}}/{{user.username}}</strong>
+        {% endblock %}
+        {% block userlinks %}
+         <a href="{% url 'enrollc' %}">Enroll new course</a>/<a href="{% url 'logout_view' %}">Log out</a>
+
+        {% endblock %}
+      </div>
+      {% endblock %}
+
+
+
+{% block sidebar %}
+
+{% if m2 %}
+  <p class="errornote">{{m2}}</p>
+{% endif %}
+
+
+{% if message %}
+      <ul class="messagelist">
+        <li>{{message}}</li>
+      </ul>
+{% endif %}
+
+{% if error %}
+<p class="errornote">{{error}}</p>
+{% endif %}
+
+{% if not iss %}
+<h1>No Course Enrolled</h1>
+{% endif %}
+
+{% if iss %}
+<table>
+  <tr>
+    <th>S. No.</th>
+    <th>Course</th>
+    <th>Total class Attended</th>
+    <th>Total Class</th>
+    <th>Percentage</th>
+    <th>Remove Course</th>
+  </tr>
+  {% for c,a,b,d in info %}
+  <tr>
+
+  <td>{{ forloop.counter }}</td>
+  <td>{{c}}</td>
+  <td>{{a}}</td>
+  <td>{{b}}</td>
+  <td>{{d}}</td>
+  <td><a href="{% url 'dereg' c %}">Deregister</a></td></tr>
+  {% endfor %}
+</table>
+{% endif %}
+
+
+{% endblock %}

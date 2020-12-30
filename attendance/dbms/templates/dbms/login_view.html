@@ -1,0 +1,33 @@
+{% extends "admin/login.html" %}
+
+{% block branding %}
+<h1 id="site-name">{{ site_header|default:_('Online Attendence System') }}</h1>
+{% endblock %}
+
+{% block content %}
+<div class="content-main">
+  {% if message %}
+  <div>
+      {{ message }}
+  </div>
+  {% endif %}
+
+    <form action="{% url 'login_view' %}" method="post">
+      {% csrf_token %}
+      <div class="form-row">
+        <a href="/admin" >Login as admin</a>
+
+      </div>
+      <div class="form-row">
+        <a href="{% url 'signup' %}">Signup</a>
+      </div>
+      <div class="form-row">
+        Username: <input size="50" type="text" name="username" placeholder="Enter Username"><br></div>
+      <div class="form-row">
+        Password: <input size="50" type="password" name="password" placeholder="Enter Password"><br></div>
+      <div class="submit-row">
+      <input  type="submit" value="Login">
+      </div>
+    </form>
+</div>
+    {% endblock %}

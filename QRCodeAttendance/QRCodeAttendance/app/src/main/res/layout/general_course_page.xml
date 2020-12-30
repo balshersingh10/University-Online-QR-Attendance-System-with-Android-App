@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GeneralCoursePageActivity">
+
+    <Button
+        android:id="@+id/QRButton"
+        android:layout_width="332dp"
+        android:layout_height="65dp"
+        android:text="Mark Attendance Using QR"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.762" />
+
+    <TextView
+        android:id="@+id/totalclasses"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:text="Total Classes :"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166" />
+
+    <TextView
+        android:id="@+id/totalattended"
+        android:layout_width="132dp"
+        android:layout_height="51dp"
+        android:text="Total Attended :"
+        app:layout_constraintBottom_toTopOf="@+id/QRButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.139"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/totalclasses"
+        app:layout_constraintVertical_bias="0.177" />
+
+    <TextView
+        android:id="@+id/tcvalue"
+        android:layout_width="184dp"
+        android:layout_height="51dp"
+        android:text="Please Wait, Calculating"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/totalclasses"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.166" />
+
+    <TextView
+        android:id="@+id/tavalue"
+        android:layout_width="184dp"
+        android:layout_height="51dp"
+        android:text="Please Wait, Calculating"
+        app:layout_constraintBottom_toTopOf="@+id/QRButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/totalattended"
+        app:layout_constraintTop_toBottomOf="@+id/tcvalue"
+        app:layout_constraintVertical_bias="0.176" />
+
+    <TextView
+        android:id="@+id/percentattendance"
+        android:layout_width="230dp"
+        android:layout_height="46dp"
+        android:text="Attendance % : Calculating..."
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintBottom_toTopOf="@+id/QRButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tavalue"
+        app:layout_constraintVertical_bias="0.391" />
+
+    <TextView
+        android:id="@+id/courseid"
+        android:layout_width="245dp"
+        android:layout_height="47dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintBottom_toTopOf="@+id/totalclasses"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.671" />
+
+    <Button
+        android:id="@+id/deregister"
+        android:layout_width="137dp"
+        android:layout_height="54dp"
+        android:text="De-Register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/QRButton"
+        app:layout_constraintVertical_bias="0.48" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,104 @@
+{% extends "admin/base.html" %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'index' %}"> Home</a>
+</div>
+{% endblock %}
+
+{% block branding %}
+<h1 id="site-name">{{ site_header|default:_('Online Attendence System') }}</h1>
+{% endblock %}
+
+{% block usertools %}
+<div id="user-tools">
+  {% block welcome-msg %}
+      <strong>WELCOME,{{user.first_name}}</strong>
+  {% endblock %}
+  {% block userlinks %}
+   <a href="{% url 'register' %}">Register new course</a>/<a href="{% url 'logout_view' %}">Log out</a>
+  {% endblock %}
+</div>
+{% endblock %}
+
+
+{% block sidebar %}
+
+{% if m %}
+  <p class="errornote"> {{m}} </p>
+{% endif %}
+
+{% if err %}
+<p class="errornote">  {{err}}{{diff}} min. </p>
+{% endif %}
+
+{% if message %}
+  <ul class="messagelist">
+    <li>{{message}}</li>
+  </ul>
+{% endif %}
+
+<h1>{{course_id}}</h1>
+<form action="{% url 'qr' course_id %}" method="post">
+  {% csrf_token %}
+  <h3>Generate QR Code for Attendance</h3>
+  Today's Class No. : <select name="times" id="times">
+    <option value="1" selected="selected">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+    <option value="5">5</option>
+  </select>
+  <input type="submit" value="Generate">
+</form>
+{% if qr %}
+{% load qr_tags %}
+{% qr_from_text qr 500 %}
+{% endif %}
+<br>
+
+{% if not students %}
+<h1>No Students are Enrolled in this Course </h1>
+{% endif %}
+
+
+{% if students %}
+<h3>List of Students Enrolled</h3>
+<table>
+  <form id="myform" action="{% url 'mark_attendence' course_id %}" method="post">
+    {% csrf_token %}
+      <tr>
+        <th>S.No</th>
+        <th>Roll Number</th>
+        <th>Total class Attended</th>
+        <th>Total Class</th>
+        <th>Percentage</th>
+        <th><select name="times" id="times">
+          <option value="1" selected="selected">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>Class No.
+        </th>
+      </tr>
+{% for student,b,c,d in mylist %}
+<tr>
+  <td>{{ forloop.counter }}</td>
+  <td>  {{student}}</td>
+  <td>{{b}}</td>
+  <td>{{c}}</td>
+  <td>{{d}}</td>
+  <td>
+    <input type="radio" name="{{ student }}" value="Present">Present
+  </td>
+</tr>
+
+
+{% endfor %}
+  </form>
+
+</table>
+<input type="submit" form="myform" value="Save Attendence">
+{% endif %}
+{% endblock %}
